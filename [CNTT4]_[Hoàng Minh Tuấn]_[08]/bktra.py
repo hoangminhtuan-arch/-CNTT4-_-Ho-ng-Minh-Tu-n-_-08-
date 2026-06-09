@@ -54,18 +54,18 @@ Moi ban nhap lua chon(1-7): ''')
         
         case "2":
             while True:
-                car_id = input("Nhap ma xe can bo xung: ").strip().upper()
-                if any(i['ID'] == car_id for i in car):
-                    print("Ma sinh vien da ton tai! Vui long nhap lai.")
+                car_id = input("Nhập mã xe: ").strip().upper()
+                if any(i["ID"] == car_id for i in car):
+                    print("Mã xe đã tồn tại!")
                 else:
                     break
             
             
             new_info = input("Nhap bien so xe moi: ").strip()
-            for i in car:
-                if i["info_car"] == new_info:
-                    print("Bien so xe da ton tai!")
-                    continue
+            if any(i["info_car"] == new_info for i in car):
+                print("Biển số xe đã tồn tại!")
+            else:
+                break
 
             new_name = input("Nhap ten tai xe: ")
             new_km = int(input("Nhap dịnh mức lý thuyết(Lít/100km): "))
@@ -93,7 +93,7 @@ Moi ban nhap lua chon(1-7): ''')
             check = find_id(car,car_id)
 
             if check == -1:
-                print("Khong tim thay nhap vien can cap nhap!!")
+                print("Khong tim thay xe can cap nhap!!")
                 continue
 
             while True:
@@ -126,7 +126,7 @@ Moi ban nhap lua chon(1-7): ''')
             avg = round((upt_km * upt_total_km) / 100, 2)
             upd_nber = upt_total_low - avg
             upd_status = calculate_car(upd_nber)
-            car[check]['km'] = upt_km
+            car[check]['Km'] = upt_km
             car[check]['total_km'] = upt_total_km
             car[check]['total_low'] =  upt_total_low
             car[check]['nber'] = upd_nber
@@ -145,7 +145,7 @@ Moi ban nhap lua chon(1-7): ''')
             choose = input("Ban co xac nhan xoa khong(Y/N): ").strip().upper()
             if(choose == "Y"):
                 car.remove(car[check])
-                print("Da xoa sinh vien thanh cong!")
+                print("Da xoa xe thanh cong!")
             else:
                 print("Yeu cau xoa khong thuc hien!")
                 continue
@@ -180,16 +180,3 @@ Moi ban nhap lua chon(1-7): ''')
             break
         case _:
             print("Lua chon khong hop le!")
-
-
-
-            
-
-            
-
-
-
-            
-                
-
-
